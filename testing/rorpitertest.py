@@ -102,10 +102,10 @@ class FillTest(unittest.TestCase):
 
 
 class ITRBadder(rorpiter.ITRBranch):
-    def start_process(self, index):
+    def start_process_directory(self, index):
         self.total = 0
 
-    def end_process(self):
+    def end_process_directory(self):
         if self.base_index:
             summand = self.base_index[-1]
             self.total += summand
@@ -115,10 +115,10 @@ class ITRBadder(rorpiter.ITRBranch):
 
 
 class ITRBadder2(rorpiter.ITRBranch):
-    def start_process(self, index):
+    def start_process_directory(self, index):
         self.total = 0
 
-    def end_process(self):
+    def end_process_directory(self):
         self.total += reduce(lambda x, y: x + y, self.base_index, 0)
 
     def can_fast_process(self, index):
@@ -127,7 +127,7 @@ class ITRBadder2(rorpiter.ITRBranch):
         else:
             return None
 
-    def fast_process(self, index):
+    def fast_process_file(self, index):
         self.total += index[0] + index[1] + index[2]
 
     def branch_process(self, subinstance):

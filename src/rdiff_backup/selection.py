@@ -816,7 +816,7 @@ class _FilterIterITRB(rorpiter.ITRBranch):
     def can_fast_process(self, index, next_rp, next_rorp):
         return not next_rp.isdir()
 
-    def fast_process(self, index, next_rp, next_rorp):
+    def fast_process_file(self, index, next_rp, next_rorp):
         """For ordinary files, just append if select is positive"""
         if self.branch_excluded:
             return
@@ -829,7 +829,7 @@ class _FilterIterITRB(rorpiter.ITRBranch):
         elif s != 0:
             raise ValueError("Unexpected select value {sel}.".format(sel=s))
 
-    def start_process(self, index, next_rp, next_rorp):
+    def start_process_directory(self, index, next_rp, next_rorp):
         s = self.select(next_rp)
         if s == 0:
             self.branch_excluded = 1
